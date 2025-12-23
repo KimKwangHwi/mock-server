@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  torus-mock:
+    build: .
+    container_name: torus-mock
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app/mock_data.json:/code/app/mock_data.json
+    restart: always

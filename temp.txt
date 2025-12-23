@@ -1,0 +1,6 @@
+"digital_thread" : {
+      "command" : "C:\\Users\\kitech\\Desktop\\kitech 김광휘\\소스코드\\Digital-Thread-main\\myenv\\Scripts\\python.exe",
+      "arg" : [
+        "C:\\Users\\kitech\\Desktop\\kitech 김광휘\\소스코드\\Digital-Thread-main\\Operation_Manager\\src\\mcp_server.py"
+      ]
+    },

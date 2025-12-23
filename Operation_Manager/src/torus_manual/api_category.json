@@ -1,0 +1,145 @@
+[
+  {
+    "category_id": 1,
+    "category_name": "장비 기본 정보",
+    "description": "장비의 고유 식별 정보 및 전반적인 상태를 조회합니다. NC 모델명(cncModel), NC 제조사(cncVendor), NC와의 통신 가능 여부(ncLinkState), 장비 전원이 켜진 시간(machinePowerOnTime), 장비 타입(machineType)과 같은 하드웨어 명세와 NC 메모리의 전체 용량(totalCapacity), 사용량(usedCapacity), 남은 용량(freeCapacity) 등 저장 공간에 대한 정보를 포함합니다.",
+    "keywords": ["장비", "머신", "기본", "정보", "모델", "제조사", "상태", "전원", "시간", "메모리", "용량", "cncModel", "cncVendor", "ncLinkState"],
+    "example_questions": [
+      "1번 장비 모델명이 뭐야?",
+      "NC 통신 연결되어 있어?",
+      "메모리 남은 용량 얼마나 돼?"
+    ],
+    "functions": ["get_machine_data"]
+  },
+  {
+    "category_id": 2,
+    "category_name": "채널 상태 정보",
+    "description": "장비의 각 채널(계통)별 현재 운용 상태를 조회합니다. 채널 사용 가능 여부(channelEnabled), 운전 모드(operateMode: JOG, MDI, AUTO/MEMORY 등), CNC 작동 상태(ncState: Reset, Stop, Hold, Start), 알람 상태(alarmStatus) 등 장비의 핵심적인 동작 상태를 파악할 수 있습니다.",
+    "keywords": ["채널", "계통", "상태", "운전 모드", "동작", "알람", "JOG", "MDI", "AUTO", "MEMORY", "Reset", "Stop", "Start", "operateMode", "ncState", "alarmStatus"],
+    "example_questions": [
+      "1번 채널 지금 운전 모드가 뭐야?",
+      "장비 지금 리셋 상태야?",
+      "2번 채널에 알람이 발생했는지 확인해줘."
+    ],
+    "functions": ["get_channel_data"]
+  },
+  {
+    "category_id": 3,
+    "category_name": "축 상태 및 제어",
+    "description": "각 축(axis)의 실시간 물리적 상태와 관련된 상세 데이터를 조회합니다. 기계 좌표계(machinePosition), 공작물 좌표계(workPosition) 기준 현재 위치, 목표 위치까지 남은 거리(distanceToGo), 축에 걸리는 부하(axisLoad), 현재 축의 이송 속도(axisFeed), 축의 온도(axisTemperature), 설정된 이동 한계(axisLimitPlus, axisLimitMinus) 정보를 포함합니다.",
+    "keywords": ["축", "axis", "좌표", "위치", "부하", "이송 속도", "온도", "한계", "machinePosition", "workPosition", "axisLoad", "axisFeed", "axisTemperature"],
+    "example_questions": [
+      "1번 장비 X축 현재 부하 알려줘.",
+      "Z축 기계 좌표가 어디야?",
+      "Y축에 걸리는 부하량 좀 봐줘."
+    ],
+    "functions": ["get_axis_data"]
+  },
+  {
+    "category_id": 4,
+    "category_name": "스핀들 상태 및 제어",
+    "description": "스핀들의 회전과 관련된 모든 상태 정보를 조회합니다. 스핀들에 걸리는 부하(spindleLoad), 실제 측정된 회전 속도(actualSpeed, RPM), 지령된 회전 속도(commandedSpeed), 스핀들 속도 오버라이드(spindleOverride), 스핀들 온도(spindleTemperature) 및 소비 전력(powerConsumption) 정보를 제공합니다.",
+    "keywords": ["스핀들", "spindle", "RPM", "회전", "속도", "부하", "오버라이드", "온도", "전력", "spindleLoad", "actualSpeed", "spindleOverride"],
+    "example_questions": [
+      "지금 스핀들 RPM 얼마야?",
+      "스핀들 부하율이 몇 퍼센트야?",
+      "현재 스핀들 속도 오버라이드 값 알려줘."
+    ],
+    "functions": ["get_spindle_data"]
+  },
+  {
+    "category_id": 5,
+    "category_name": "이송 속도 및 오버라이드",
+    "description": "축의 이송(feed) 속도와 관련된 정보를 전문적으로 조회합니다. 가공 이송 속도 오버라이드(feedOverride)와 급속 이송 속도 오버라이드(rapidOverride) 비율, 그리고 지령된 이송 속도(commandedSpeed)와 실제 측정된 이송 속도(actualSpeed) 값을 확인할 수 있습니다.",
+    "keywords": ["이송", "feed", "속도", "오버라이드", "급속 이송", "절삭 이송", "feedOverride", "rapidOverride", "actualSpeed"],
+    "example_questions": [
+      "현재 피드 오버라이드 몇이야?",
+      "실제 이송 속도 알려줘.",
+      "급속 이송 오버라이드 값 좀 봐줘."
+    ],
+    "functions": ["get_feed_data"]
+  },
+  {
+    "category_id": 6,
+    "category_name": "공구 정보",
+    "description": "공구(tool)에 대한 모든 정보를 포괄적으로 조회합니다. 현재 활성화된 공구의 번호(toolNumber, T코드), 이름(toolName), 공구 길이 및 반경 보정값(geoLengthOffset, geoRadiusOffset), 마모 보정값(wearLengthOffset)을 알 수 있습니다. 또한, 매거진에 등록된 전체 공구 목록과 각 공구의 최대 수명(maxToolLife), 잔여 수명(restToolLife), 현재 사용량(toolLifeCount) 정보도 제공합니다.",
+    "keywords": ["공구", "tool", "T코드", "보정값", "오프셋", "offset", "수명", "life", "매거진", "이름", "길이", "반경", "마모", "toolNumber", "geoLengthOffset", "restToolLife"],
+    "example_questions": [
+      "지금 쓰고 있는 공구 번호 뭐야?",
+      "5번 공구 남은 수명 알려줘.",
+      "T10번 공구 길이 보정값 확인해줘."
+    ],
+    "functions": ["get_activeTool_data", "get_toolArea_data", "get_toolLife_info"]
+  },
+  {
+    "category_id": 7,
+    "category_name": "NC 프로그램 실행 정보",
+    "description": "현재 장비에서 실행 중인 NC 프로그램의 상태를 상세히 조회합니다. 실행 중인 프로그램의 이름(programName)과 경로(programPath), 현재 실행 중인 시퀀스 번호(sequenceNumber, N코드)와 블록 내용(currentBlock), 프로그램 실행 모드(programMode: Start, Stop, Hold), 그리고 현재 적용 중인 G코드 모달(modalCode) 정보를 포함합니다.",
+    "keywords": ["프로그램", "NC", "G코드", "N코드", "실행", "블록", "모달", "경로", "정지", "홀드", "programName", "sequenceNumber", "currentBlock", "modalCode"],
+    "example_questions": [
+      "지금 어떤 프로그램 실행하고 있어?",
+      "현재 실행 중인 G코드 블록 내용 보여줘.",
+      "시퀀스 번호 몇 번이야?"
+    ],
+    "functions": ["get_currentProgram_data"]
+  },
+  {
+    "category_id": 8,
+    "category_name": "좌표계 및 오프셋",
+    "description": "공작물 좌표계(Work Offset)의 설정값을 조회합니다. G54, G55 등 특정 공작물 좌표계(workOffset)에 설정된 각 축별 오프셋 값(workOffsetValue), 회전량(workOffsetRotation), 확장량(workOffsetScalingFactor) 등의 상세 정보를 제공합니다.",
+    "keywords": ["좌표계", "오프셋", "offset", "G54", "G55", "G56", "G57", "설정값", "workOffset", "workOffsetValue"],
+    "example_questions": [
+      "G54 좌표계 오프셋 값 알려줘.",
+      "2번 장비 1번 채널의 G55 X축 옵셋값 뭐야?"
+    ],
+    "functions": ["get_workOffset_data"]
+  },
+  {
+    "category_id": 9,
+    "category_name": "알람 및 에러",
+    "description": "장비에서 발생한 알람 및 에러 정보를 조회합니다. 현재 발생한 알람의 상세 내용(alarmText), 알람 번호(alarmNumber), 알람 발생 시각(raisedTimeStamp)을 확인하거나, 특정 9자리 에러 코드(error_code)에 해당하는 분류와 설명을 조회할 수 있습니다.",
+    "keywords": ["알람", "에러", "alarm", "error", "코드", "번호", "내용", "메시지", "발생", "시간", "alarmText", "alarmNumber"],
+    "example_questions": [
+      "1번 장비에 무슨 알람 떴어?",
+      "가장 최근에 발생한 알람 내용이 뭐야?",
+      "에러 코드 538992680이 무슨 뜻이야?"
+    ],
+    "functions": ["get_alarm_data", "get_error_info_by_code"]
+  },
+  {
+    "category_id": 10,
+    "category_name": "PLC 및 변수",
+    "description": "CNC 내부의 저수준 데이터 영역을 직접 조회합니다. 특정 주소의 PLC 메모리 값(rbitBlock, byteBlock, wordBlock 등)을 읽거나, 사용자가 정의한 매크로 변수(userVariable) 값을 확인할 수 있습니다.",
+    "keywords": ["PLC", "변수", "variable", "매크로", "macro", "메모리", "주소", "번지", "#", "userVariable", "bitBlock", "wordBlock"],
+    "example_questions": [
+      "PLC 메모리 R100.0 비트 값 읽어줘.",
+      "매크로 변수 #500에 저장된 값이 뭐야?",
+      "1번 장비 D1234 워드 값 좀 봐줘."
+    ],
+    "functions": ["get_plc_data", "get_variable_data"]
+  },
+  {
+    "category_id": 11,
+    "category_name": "가공 상태 및 집계",
+    "description": "가공 작업의 성과와 진척도를 나타내는 집계 데이터를 조회합니다. 목표 가공 수량(targetWorkCounter) 대비 현재까지 가공한 수량(currentWorkCounter), 현재 가공이 진행된 시간(processingMachiningTime), 실제 총 절삭 시간(actualCuttingTime) 등 생산 현황 정보를 제공합니다.",
+    "keywords": ["가공", "생산", "수량", "카운터", "시간", "사이클 타임", "절삭", "진행률", "현황", "workCounter", "machiningTime", "cuttingTime"],
+    "example_questions": [
+      "오늘 생산 수량 몇 개야?",
+      "이 제품 가공하는 데 걸린 시간 알려줘.",
+      "총 절삭 시간이 얼마나 돼?"
+    ],
+    "functions": ["get_workStatus_data"]
+  },
+  {
+    "category_id": 12,
+    "category_name": "센서 데이터 수집",
+    "description": "장비 내장 센서로부터 시계열(Time-series) 데이터를 수집하는 버퍼(buffer) 관련 정보를 조회합니다. 버퍼의 활성화 여부, 데이터 수집 상태(statusOfStream), 수집 주기(frequencyOfStream), 그리고 특정 스트림 채널에서 마지막으로 수집된 데이터 값(stream/value)을 확인할 수 있습니다.",
+    "keywords": ["센서", "sensor", "데이터", "수집", "버퍼", "buffer", "스트림", "stream", "시계열", "주파수", "frequency", "statusOfStream"],
+    "example_questions": [
+      "1번 버퍼의 데이터 수집 상태 어때?",
+      "3번 스트림에서 마지막으로 수집된 값이 뭐야?",
+      "센서 데이터 수집 주기가 어떻게 설정되어 있어?"
+    ],
+    "functions": ["get_buffer_data"]
+  }
+]
